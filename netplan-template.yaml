@@ -1,0 +1,30 @@
+# Netplan configuration template for the maintenance server.
+#
+# Replace the placeholder values before applying:
+#
+#   <YOUR_ETH_INTERFACE>   — your wired NIC name (e.g., eno1, enp3s0, eth0)
+#   <YOUR_STATIC_IP>       — the static IP assigned by your ISP
+#   <YOUR_GATEWAY_IP>      — the default gateway provided by your ISP
+#
+# Save the completed file as:
+#   /etc/netplan/01-netcfg.yaml
+#
+# Apply it with:
+#   sudo netplan apply
+#
+# Test safely with:
+#   sudo netplan try
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    <YOUR_ETH_INTERFACE>:
+      dhcp4: false
+      addresses:
+        - <YOUR_STATIC_IP>/24
+      gateway4: <YOUR_GATEWAY_IP>
+      nameservers:
+        addresses:
+          - 1.1.1.1
+          - 8.8.8.8
